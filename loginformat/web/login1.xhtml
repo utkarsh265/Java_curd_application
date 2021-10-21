@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <body>
+
+
+        <ui:composition template="/header1.xhtml">
+            <ui:define name="content">
+                <h:form id="frm1">
+                    <p:panel header="Login Form">
+                        <h:panelGrid columns="2">
+                            <h:outputLabel for="loginid" value="userid:"/>
+                            <p:inputText id="loginid" value="#{LoginService1.loginForm1.loginId}"/>
+                            <h:outputLabel for="pwd" value="Password:"/>
+                            <p:password id="pwd" value="#{LoginService1.loginForm1.password}" />
+                            <p:commandButton value="login" id="cmdlogin" update="msgout" action="#{LoginService1.checkLogin()}"/>
+                        </h:panelGrid>
+                        <h:outputText id="msgout" value="#{LoginService1.errorMessage}"/>
+                    </p:panel>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./wheader1.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                    <p:dataTable id="tb1" value="#{smsMaster.userList()}" var="Num" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}" paginator="true" rows="10" style="margin-bottom: 20px" >
+                        <f:facet name="{Exporters}">
+                            <div  style="float:right;padding-top: 5px;">
+                                <h:commandLink>
+                                    <p:graphicImage name="E:\PivpTest\loginformat\web\csv.png" width="24px"/>
+                                    <p:dataExporter target="tb1" type="csv" fileName="smsfile"/>
+                                </h:commandLink>
+                            </div>
+                        </f:facet>
+                        <p:column headerText="GROUP-ID">
+                            <h:outputText value="#{Num.groupId}"></h:outputText>
+                        </p:column>
+                        <p:column headerText="COMPANY-ID">
+                            <h:outputText value="#{Num.companyId}" ></h:outputText>
+                        </p:column>
+                        <p:column headerText="GROUP-NAME">
+                            <h:outputText value="#{Num.groupName}"></h:outputText>
+                        </p:column>
+                        <p:column headerText="GROUP-SPECS">
+                            <h:outputText value="#{Num.groupSpecs}"></h:outputText>
+                        </p:column>
+                        <p:column headerText="STATUS">
+                            <h:outputText value="#{Num.status}"></h:outputText>
+                        </p:column>
+                        <p:column headerText="Action">
+
+                            <p:commandButton value="Edit" action="#{smsMaster.editfile(Num.groupId)}"  ></p:commandButton>
+                            <p:commandButton value="DISABLE" action="#{smsMaster.disable(Num.groupId)}" ></p:commandButton>
+                        </p:column>
+
+                    </p:dataTable>
+
+
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

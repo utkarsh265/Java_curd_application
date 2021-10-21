@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./header1.xhtml">
+            <ui:define name="content">
+                <h:form id="frmc1">
+                    <p:accordionPanel id="ap1">
+                        <p:tab id="aptab1" title="Add New Group">
+                            <p:panel id="pnladdnew">
+                                <p:panelGrid columns="4">
+                                    <h:outputLabel id="lbl1" value="Group Name"/>
+                                    <p:inputText id="groupname" value="#{promoGroup.newGroup.groupName}"/>
+                                    <h:outputLabel id="lbl2" value="Group Specifiation"/>
+                                    <p:inputText id="groupspecification" value="#{promoGroup.newGroup.groupSpecification}"/>
+                                    <h:outputLabel id="lbl3" value="campanyid"/>
+                                    <p:inputText id="campanyid" value="#{promoGroup.newGroup.campanyId}"/>
+<!--                                    <h:outputLabel id="lbl4" value="Upload file"/>
+                                    <p:fileUpload mode="simple"/>-->
+                                    <p:commandButton id="cmdaddnew" value="Submit" update="msgout,:frmc1:ap1:gplisttable" 
+                                                     action="#{promoGroup.createNewGroup()}" resetValues="true"/>
+                                </p:panelGrid>
+                                <h:outputText id="msgout" value="#{promoGroup.errMsg}"/>
+                            </p:panel>
+                        </p:tab>
+                        <p:tab id="aptab2" title="View/Edit Groups">
+                            <p:dataTable id="gplisttable" value="#{promoGroup.groupList}" var="u" paginator="true" 
+                                         rows="10" rowKey="#{u.groupId}" editable="true">
+                                <p:column headerText="GroupId">
+                                    <h:outputText value="#{u.groupId}"/>
+                                </p:column>
+                                <p:column headerText="GroupName">
+                                    <p:cellEditor>
+                                        <f:facet name="output">
+                                            <h:outputText value="#{u.groupName}"/>
+                                        </f:facet>
+                                        <f:facet name="input">
+                                            <p:inputText value="#{u.groupName}" style="width:100%"/>
+                                        </f:facet>
+                                    </p:cellEditor>
+                                </p:column>
+                                <p:column headerText="GroupDescp">
+                                    <p:cellEditor>
+                                        <f:facet name="output">
+                                            <h:outputText value="#{u.groupSpecification}"/>
+                                        </f:facet>
+                                        <f:facet name="input"> 
+                                            <p:inputText value="#{u.groupSpecification}" style="width: 100%"/>
+                                        </f:facet>
+                                    </p:cellEditor>
+                                </p:column>
+                                <p:column headerText="Status">
+                                    <p:cellEditor>
+                                        <f:facet name="output">
+                                            <h:outputText value="#{u.status}"/>
+                                        </f:facet>
+                                        <f:facet name="input">
+                                            <p:inputText value="#{u.status}" style="width: 100%"/>
+                                        </f:facet>
+                                    </p:cellEditor>
+                                 </p:column>
+                                <p:column style="width: 6rem">
+                                    <p:rowEditor/>
+                                </p:column>
+                                <p:ajax event="rowEdit" listener="#{promoGroup.onEdit}" update="gplisttable"/>
+                            </p:dataTable>
+                        </p:tab>
+                    </p:accordionPanel>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>
+

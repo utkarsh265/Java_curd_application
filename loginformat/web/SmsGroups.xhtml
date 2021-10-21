@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <title>SmsGroups</title>
+    </h:head>
+
+    <h:body>
+       
+        <div id="top" class="top">
+            <ui:insert name="left">MASTER FILES</ui:insert>
+        </div>
+
+        <div id="content" class="center_content">
+            <ui:insert name="content">SMS-NUMBERS <p:commandButton value="NEW" action="#{smsMaster.createFilePage()}"></p:commandButton></ui:insert>
+        </div>
+        <h:form>
+            <p:dataTable id="tb1" value="#{smsMaster.userList()}" var="Num" paginator="true" rows="10" style="margin-bottom: 20px" editable="true" >
+                
+                
+                <p:column headerText="GROUP-ID">
+                    <h:outputText value="#{Num.groupId}"></h:outputText>
+                </p:column>
+                <p:column headerText="COMPANY-ID">
+                    <h:outputText value="#{Num.companyId}" ></h:outputText>
+                </p:column>
+                <p:column headerText="GROUP-NAME">
+                    <h:outputText value="#{Num.groupName}"></h:outputText>
+                </p:column>
+                <p:column headerText="GROUP-SPECS">
+                    <h:outputText value="#{Num.groupSpecs}"></h:outputText>
+                </p:column>
+                <p:column headerText="STATUS">
+                    <h:outputText value="#{Num.status}"></h:outputText>
+                </p:column>
+                <p:column headerText="Action">
+
+                    <p:commandButton value="Edit" ></p:commandButton>
+                    <p:commandButton value="DISABLE" action="#{smsMaster.disable(Num.groupId)}" ></p:commandButton>
+                </p:column>
+
+            </p:dataTable>
+
+
+        </h:form>
+    </h:body>
+
+</html>

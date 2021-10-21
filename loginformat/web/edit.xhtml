@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <title>Update Number</title>
+    </h:head>
+
+    <h:body>
+
+        
+            
+            <h1>EDIT YOUR NUMBER</h1>
+            <h:form>
+                
+                  
+                 <p:panel>
+                    <p:column headerText="Group-id">
+                        <p:outputLabel> Group id : </p:outputLabel>
+                        <p:inputText value="#{editFile.groupId}">
+                            
+                        </p:inputText>
+                    </p:column>
+                </p:panel>
+                <p:panel>
+                    <p:column headerText="Company-id">
+                        <p:outputLabel> Company id : </p:outputLabel>
+                        <p:inputText value="#{editFile.companyId}">
+                            
+                        </p:inputText>
+                    </p:column>
+                </p:panel>
+                <p:panel>
+                    <p:column headerText="Group-name">
+                        <p:outputLabel> Group name : </p:outputLabel>
+                        <p:inputText value="#{editFile.groupName}">
+                            
+                        </p:inputText>
+                    </p:column>
+                </p:panel>
+                <p:panel>
+                    <p:column headerText="Group-Specs">
+                        <p:outputLabel> Group Specification : </p:outputLabel>
+                        <p:inputText value="#{editFile.groupSpecs}">
+                            
+                        </p:inputText>
+                    </p:column>
+                </p:panel>
+                <p:panel>
+                    <p:column headerText="Status">
+                        <p:outputLabel> Status : </p:outputLabel>
+                        <p:inputText value="#{editFile.status}">
+                            
+                        </p:inputText>
+                    </p:column>
+                </p:panel>
+                <p:panel>
+                    <p:commandButton value="Update" action="#{smsMaster.updateFile(editFile)}"></p:commandButton>
+                </p:panel>
+                    
+               
+                
+                
+            </h:form>
+            
+     
+
+    </h:body>
+
+</html>
